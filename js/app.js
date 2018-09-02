@@ -6,17 +6,29 @@ function reducirSize(elemento){
 function volverSize(elemento){
 	elemento.removeAttribute("style")
 }
-function escribirPantalla(){
-	
+
+function escribirPantalla(elemento){
+	elemento=elemento.alt
+	var pant=document.getElementById("display").innerHTML
+	if(pant==0){
+		document.getElementById("display").innerHTML="";
+		document.getElementById("display").innerHTML+=elemento;	
+	}else if(pant!==0){
+		document.getElementById("display").innerHTML+=elemento;	
+	}
+	else{
+			document.getElementById("display").innerHTML=0;
+	}
 }
 
 
 var Calculadora = {
 	init : function(){
-		this.teclRow();
+		this.asignarEventoTeclado();
 		this.pantalla();
+		document.getElementById("on").onclick=this.presionarON;
 	},
-	teclRow : function(){
+	asignarEventoTeclado : function(){
 		var tecl1 = document.querySelectorAll(".teclado img")
 		for (var i = 0; i < tecl1.length; i++) {
 			tecl1[i].onmousedown = this.eventReducirSize;
@@ -26,22 +38,20 @@ var Calculadora = {
 	eventReducirSize: function(e){
 		reducirSize(e.target)
 	},
-	eventReducirSizeMas: function(e){
-		reducirSizeMas(e.target)
-	},
 	eventvolverSize: function(e){
 		volverSize(e.target)
 	},
 	pantalla : function(){
-		/*var teclas = document.querySelectorAll(".teclado img")
+		var teclas = document.querySelectorAll(".teclado img")
 		for (var i = 0; i < teclas.length; i++) {
-			teclas[i].onclick.innerHTML=teclas[i];			
-		}
-		escribirPantalla();if(pant!="0"){
-			
-		}else{
-			document.getElementById("display").innerHTML("0");
-		}*/
+			teclas[i].onclick=this.eventEscribir;			
+		}	
+	},
+	eventEscribir : function(e){
+		escribirPantalla(e.target)
+	},
+	presionarON : function(){
+		document.getElementById("display").innerHTML=0;
 	}
 
 
