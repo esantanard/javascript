@@ -27,7 +27,7 @@ var Calculadora = {
 		this.asignarEventoTeclado();
 		this.pantalla();
 		document.getElementById("on").onclick=this.presionarON;
-		document.getElementById("menos").onclick=this.agregarNegativo;
+		document.getElementById("sign").onclick=this.agregarNegativo;
 	},
 	asignarEventoTeclado : function(){
 		var tecl1 = document.querySelectorAll(".teclado img")
