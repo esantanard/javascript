@@ -1,58 +1,30 @@
 
 function reducirSize(elemento){
-	elemento.style.width = "28%";
-	elemento.style.height = "60px";
-}
-
-function reducirSize2(elemento){
-	elemento.style.width = "20%";
-	elemento.style.height = "60px";
-}
-
-function reducirSizeMas(elemento){
-	elemento.style.width = "88%";
-	elemento.style.height = "98%";
+	elemento.style.transform = "scale(0.9, 0.9)";
 }
 
 function volverSize(elemento){
 	elemento.removeAttribute("style")
 }
-
-
+function escribirPantalla(){
+	
+}
 
 
 var Calculadora = {
 	init : function(){
-		this.selecTecla();
 		this.teclRow();
-		this.teclMas();
+		this.pantalla();
 	},
 	teclRow : function(){
-		var tecl1 = document.querySelectorAll(".teclado .row .col1 img")
-			for (var i = 0; i < tecl1.length; i++) {
-				tecl1[i].onmousedown = this.eventReducirSize;
-				tecl1[i].onmouseup = this.eventvolverSize;
-		}
-	},
-	teclMas : function(){
-		var teclaMas = document.getElementById("mas")
-		teclaMas.onmousedown = this.eventReducirSizeMas;
-		teclaMas.onmouseup = this.eventvolverSize;
-	},
-	selecTecla : function(){
-			
-			var tecl2 = document.querySelectorAll(".teclado img")
-			for (var i = 0; i < tecl2.length; i++) {
-				tecl2[i].onmousedown = this.eventReducirSize2;
-				tecl2[i].onmouseup = this.eventvolverSize;
-			
+		var tecl1 = document.querySelectorAll(".teclado img")
+		for (var i = 0; i < tecl1.length; i++) {
+			tecl1[i].onmousedown = this.eventReducirSize;
+			tecl1[i].onmouseup = this.eventvolverSize;
 		}
 	},
 	eventReducirSize: function(e){
 		reducirSize(e.target)
-	},
-	eventReducirSize2: function(e){
-		reducirSize2(e.target)
 	},
 	eventReducirSizeMas: function(e){
 		reducirSizeMas(e.target)
@@ -60,6 +32,17 @@ var Calculadora = {
 	eventvolverSize: function(e){
 		volverSize(e.target)
 	},
+	pantalla : function(){
+		/*var teclas = document.querySelectorAll(".teclado img")
+		for (var i = 0; i < teclas.length; i++) {
+			teclas[i].onclick.innerHTML=teclas[i];			
+		}
+		escribirPantalla();if(pant!="0"){
+			
+		}else{
+			document.getElementById("display").innerHTML("0");
+		}*/
+	}
 
 
 
