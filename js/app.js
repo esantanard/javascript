@@ -17,7 +17,7 @@ function escribirPantalla(elemento){
 		document.getElementById("display").innerHTML+=elemento;	
 	}
 	else{
-			document.getElementById("display").innerHTML=0;
+		  document.getElementById("display").innerHTML=0;
 	}
 }
 
@@ -27,6 +27,7 @@ var Calculadora = {
 		this.asignarEventoTeclado();
 		this.pantalla();
 		document.getElementById("on").onclick=this.presionarON;
+		document.getElementById("menos").onclick=this.agregarNegativo;
 	},
 	asignarEventoTeclado : function(){
 		var tecl1 = document.querySelectorAll(".teclado img")
@@ -52,12 +53,15 @@ var Calculadora = {
 	},
 	presionarON : function(){
 		document.getElementById("display").innerHTML=0;
+	},
+	agregarNegativo:function(){
+		var panta = document.getElementById("display").innerHTML
+		if(panta==0){
+		}
+		else{
+			document.getElementById("display").insertAdjacentHTML("afterbegin", "-");
+		}
 	}
-
-
-
-
-
 }
 
 Calculadora.init();
