@@ -1,3 +1,7 @@
+var primerElemento = "";
+var segundoElemento= "";
+var operacion="";
+var resultado = "";
 
 function reducirSize(elemento){
 	elemento.style.transform = "scale(0.9, 0.9)";
@@ -9,53 +13,81 @@ function volverSize(elemento){
 
 function escribirPantalla(elemento){
 	elemento=elemento.alt
-	var pant=document.getElementById("display").innerHTML
-	//Aqui estoy tratando de que si lo que hay en el display es mayor a 0 y menor que uno se visualice el decimal
+	
+	var pant=document.getElementById("display").innerHTML;
 	if(pant=="0"){
 		document.getElementById("display").innerHTML=elemento
 	}else{
-		if(elemento== "mas"){
-			elemento= "+"
-			document.getElementById("display").innerHTML+=elemento;	
-		}else{
-			if(elemento== "menos"){
-				elemento= "-"
-				document.getElementById("display").innerHTML+=elemento;	
-			}else{
-				if(elemento== "por"){
-					elemento= "*"
-					document.getElementById("display").innerHTML+=elemento;	
-				}else{
-					if(elemento== "dividido"){
-						elemento= "/"
-						document.getElementById("display").innerHTML+=elemento;	
-					}else{
-						if(elemento=="raiz"){
-
-						}else{
-							document.getElementById("display").innerHTML+=elemento
-						}
-					}
-				}	
-			}
-		}
+		document.getElementById("display").innerHTML+=elemento;	
 	}
 }
 
-//Para hacer que la calculadora realice su funcion de calcular
-function calcular(opcion) {
-	var resultado = 0;
-	switch (opcion) {
-		case "mas":
-		resultado = parseFloat(elemento1) + parseFloat(elemento2)
-		break;
+function sumar(){
+	primerElemento=document.getElementById("display").textContent;
 
-		case "-":
-		resultado = parseFloat(elemento1) - parseFloat(elemento2)
-		break;
+	document.getElementById("display").textContent="";
 
-		case "igual":
-		console.log(resultado);
+	operacion = "sumar";
+}
+
+function sumar(){
+	primerElemento=document.getElementById("display").textContent;
+
+	document.getElementById("display").textContent="";
+
+	operacion = "sumar";
+}
+
+function restar(){
+	primerElemento=document.getElementById("display").textContent;
+
+	document.getElementById("display").textContent="";
+
+	operacion = "restar";
+}
+
+function multiplicar(){
+	primerElemento=document.getElementById("display").textContent;
+
+	document.getElementById("display").textContent="";
+
+	operacion = "multiplicar";
+}
+
+function dividir(){
+	primerElemento=document.getElementById("display").textContent;
+
+	document.getElementById("display").textContent="";
+
+	operacion = "dividir";
+}
+
+function igual(){
+	segundoElemento=document.getElementById("display").innerHTML;
+
+	document.getElementById("display").textContent="";
+
+	result();
+}
+
+function result(){
+
+	switch(operacion){
+		case "sumar":
+		resultado=parseFloat(primerElemento) + parseFloat(segundoElemento);
+		document.getElementById("display").innerHTML=resultado;
+		break;
+		case "restar":
+		resultado=parseFloat(primerElemento) - parseFloat(segundoElemento);
+		document.getElementById("display").innerHTML=resultado;
+		break;
+		case "multiplicar":
+		resultado=parseFloat(primerElemento) * parseFloat(segundoElemento);
+		document.getElementById("display").innerHTML=resultado;
+		break;
+		case "dividir":
+		resultado=parseFloat(primerElemento) / parseFloat(segundoElemento);
+		document.getElementById("display").innerHTML=resultado;
 		break;
 	}
 }
@@ -67,7 +99,11 @@ var Calculadora = {
 		document.getElementById("on").onclick=this.presionarON;
 		document.getElementById("sign").onclick=this.agregarNegativo;
 		document.getElementById("punto").onclick=this.teclaPunto;
-		this.asignarEventCalcular();
+		document.getElementById("mas").onclick=this.eventoSumar;
+		document.getElementById("menos").onclick=this.eventoRestar;
+		document.getElementById("por").onclick=this.eventoMultiplica;
+		document.getElementById("dividido").onclick=this.eventoDividir;
+		document.getElementById("igual").onclick=this.eventoIgual;		
 	},
 	asignarEventoTeclado : function(){
 		var tecl1 = document.querySelectorAll(".teclado img")
@@ -104,21 +140,26 @@ var Calculadora = {
 	},
 	teclaPunto : function(){
 		var panta = document.getElementById("display").innerHTML
-		if(panta.indexOf(".")!=1){
+		if(panta.indexOf(".")==(-1)){
 			document.getElementById("display").insertAdjacentHTML("beforeend", ".");
-		}
-		else{
-			
+		}else{
+		
 		}
 	},
-	asignarEventCalcular: function(){
-		var rr = document.querySelectorAll(".teclas")
-		for (var i = 0; i < rr.length; i++) {
-			rr[i].onclick=this.eventCalcular;			
-		}	
+	eventoSumar : function(){
+		sumar();
 	},
-	eventCalcular:function(e){
-		calcular(e.target)
+	eventoRestar : function(){
+		restar();
+	},
+	eventoMultiplica : function(){
+		multiplicar();
+	},
+	eventoDividir : function(){
+		dividir();
+	},
+	eventoIgual :function(){
+		igual()
 	}
 }
 
