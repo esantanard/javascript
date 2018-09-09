@@ -121,7 +121,6 @@ var Calculadora = {
 		document.getElementById("por").onclick=this.eventoMultiplica;
 		document.getElementById("dividido").onclick=this.eventoDividir;
 		document.getElementById("igual").onclick=this.eventoIgual;		
-		this.noEscribeMas();
 	},
 	asignarEventoTeclado : function(){
 		var tecl1 = document.querySelectorAll(".teclado img")
@@ -178,15 +177,6 @@ var Calculadora = {
 	},
 	eventoIgual :function(){
 		igual()
-	},
-	noEscribeMas: function(){
-		var max= document.getElementById("display").length
-		if(max < 8){
-			console.log("ee")
-		}
-		else{
-			console.log("dd")
-		}
 	}
 }
 
